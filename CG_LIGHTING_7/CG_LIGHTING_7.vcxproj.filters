@@ -42,12 +42,18 @@
     <ClCompile Include="source\main.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="source\Ball.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\glm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="header\glmint.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Ball.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

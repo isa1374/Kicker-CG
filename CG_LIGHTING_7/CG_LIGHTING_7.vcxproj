@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Ball.cpp" />
+    <ClCompile Include="source\Field.cpp" />
     <ClCompile Include="source\glm.c" />
     <ClCompile Include="source\glmimg.c" />
     <ClCompile Include="source\glmimg_devil.c" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Ball.h" />
+    <ClInclude Include="header\Field.h" />
     <ClInclude Include="header\glm.h" />
     <ClInclude Include="header\glmint.h" />
   </ItemGroup>

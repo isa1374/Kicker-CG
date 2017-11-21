@@ -51,7 +51,7 @@ void init(void)
     glEnable(GL_DEPTH_TEST);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-    glClearColor(0.2, 0.2, 0.2, 1.0);
+    glClearColor(0.2, 0.2, 0.2, 3.0);
     
     posx= 0.0;
     posy=20.0;
@@ -99,18 +99,17 @@ void init(void)
     //glmFacetNormals(model); // and then per face
     
     GLfloat lightColor0[] = { 1,1,1,1.0f};
-    GLfloat dirVector0[]={ 0.0, -1.0, 0.0, 0.0};
     light0_position = new GLfloat[4];
     light0_position[0] = 3;
-    light0_position[1] = 10;
+    light0_position[1] = 40;
     light0_position[2] = 0;
     light0_position[3] = 1;
     
     GLfloat lightColor1[] = { 0.74f, 0.84f, 0.84f, 1.0f };
     light1_position = new GLfloat[4];
     light1_position[0] = 0;
-    light1_position[1] = 100;
-    light1_position[2] = 80;
+    light1_position[1] = 50;
+    light1_position[2] = 100;
     light1_position[3] = 1;
     glLightfv(GL_LIGHT1, GL_AMBIENT, lightColor0);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);

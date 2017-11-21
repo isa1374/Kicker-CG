@@ -89,6 +89,19 @@ void init(void)
     glmVertexNormals(P3, 45.0f, false);
     glmFacetNormals(P3);
     
+    AI1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    glmUnitize(AI1);
+    glmVertexNormals(AI1, 45.0f, false);
+    glmFacetNormals(AI1);
+    AI2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    glmUnitize(AI2);
+    glmVertexNormals(AI2, 45.0f, false);
+    glmFacetNormals(AI2);
+    AI3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    glmUnitize(AI3);
+    glmVertexNormals(AI3, 45.0f, false);
+    glmFacetNormals(AI3);
+    
     // When the model is too big make it fit inside a 1x1x1 cube:
     //glmUnitize(model);
     // You can also scale it later:
@@ -165,9 +178,10 @@ void display(void)
     // Ball
     //ball->draw();
     
-    /*Model of robot */
+    /*Model of TEAMS  */
+    
+    //TEAM A
     glPushMatrix();{
-        
         glPushMatrix();
         {
             // in position
@@ -178,7 +192,7 @@ void display(void)
         glPopMatrix();
         glPushMatrix();
         {
-            //in position 
+            //in position
             glRotatef(90, 0.0f, -1.0f, 0.0f);
             glTranslatef(-2.0, .9f, -1.0);
             glmDraw(P2, GLM_SMOOTH);
@@ -186,10 +200,40 @@ void display(void)
         glPopMatrix();
         glPushMatrix();
         {
-            //in position
+            //in position GoalKeeper
             glTranslatef(5, .9f, 0);
             glRotatef(90, 0.0f, -1.0f, 0.0f);
             glmDraw(P3, GLM_SMOOTH);
+        }
+        glPopMatrix();
+        
+    }
+    glPopMatrix();
+    
+    //TEAM B
+    glPushMatrix();{
+        glPushMatrix();
+        {
+            //in position
+            glTranslatef(-1.0, .9f, 2.0);
+            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glmDraw(AI1, GLM_SMOOTH);
+        }
+        glPopMatrix();
+        glPushMatrix();
+        {
+            //in position
+            glTranslatef(-1.0, .9f, -2.0);
+            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glmDraw(AI2, GLM_SMOOTH);
+        }
+        glPopMatrix();
+        glPushMatrix();
+        {
+            //in position GoalKeeper
+            glTranslatef(-5.0, .9f, 0);
+            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glmDraw(AI3, GLM_SMOOTH);
         }
         glPopMatrix();
     }

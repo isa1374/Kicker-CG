@@ -170,17 +170,26 @@ void display(void)
         
         glPushMatrix();
         {
-            glRotatef(90, 0.0f, 1.0f, 0.0f);
-            glTranslatef(0, .9f, 0);
+            // in position
+            glRotatef(90, 0.0f, -1.0f, 0.0f);
+            glTranslatef(2.0, .9f, -1.0);
             glmDraw(P1, GLM_SMOOTH);
         }
         glPopMatrix();
         glPushMatrix();
         {
-            
-            glTranslatef(3, .9f, 0);
-            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            //in position 
+            glRotatef(90, 0.0f, -1.0f, 0.0f);
+            glTranslatef(-2.0, .9f, -1.0);
             glmDraw(P2, GLM_SMOOTH);
+        }
+        glPopMatrix();
+        glPushMatrix();
+        {
+            //in position
+            glTranslatef(5, .9f, 0);
+            glRotatef(90, 0.0f, -1.0f, 0.0f);
+            glmDraw(P3, GLM_SMOOTH);
         }
         glPopMatrix();
     }

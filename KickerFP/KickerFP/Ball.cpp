@@ -1,34 +1,46 @@
 #include "Ball.h"
 
 Ball::Ball() {
-
+    isMoving = false;
+    posx=0.0;
+    posy=0.9;
+    posz=0.0;
 }
 
 Ball::~Ball() {
 
 }
 
-void Ball::draw() {
-	GLUquadric* qobj;
-	glPushMatrix();
-		glColor3f(.52, 0.39, 0.39);
-		glTranslated(0, 0, .1);
-		glRotatef(90, 90.0f, 1.0f, 0.0f);
-		qobj = gluNewQuadric();
-		gluQuadricNormals(qobj, GLU_SMOOTH);
-		gluSphere(qobj, .1, 20, 20);
-	glPopMatrix();
+void Ball::inMotion(float vi, float dv){
+    isMoving=true;
+    initialVel = vi;
+    decreaseVel = dv;
+}
+void Ball::stopMotion(){
+    isMoving=false;
+}
 
-	glPushMatrix();
-	{
-		glColor3f(.196078, 0.6, 0.8);
-		glBegin(GL_POLYGON);
-		glVertex3f(-7.0, 5.0, 0.0);
-		glVertex3f(7.0, 5.0, 0.0);
-		glVertex3f(7.0, -5.0, 0.0);
-		glVertex3f(-7.0, -5.0, 0.0);
-		glEnd();
-		glFlush();
-	}
-	glPopMatrix();
+void Ball::reset(){
+    isMoving=false;
+    posx=0.0;
+    posy=0.9;
+    posz=0.0;
+}
+
+void Ball::draw() {
+    glColor3f(1.0,1.0,0.0);
+    glPushMatrix();{
+        glTranslatef(posx, posy, posz);
+        
+        glRotatef(30,1,0,0);
+        glRotatef(30, 0, 1, 0);
+        glRotatef(30, 0, 0, 1);
+        
+        glColor3f(1, 1, 1);
+        glutSolidSphere(.37, 12, 12);
+        glColor3f(0, 0, 0);
+        glutWireSphere(.4, 12, 12);
+    }
+    glPopMatrix();
+    
 }

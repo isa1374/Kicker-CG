@@ -17,9 +17,7 @@
 #include "glm.h"
 #include "Ball.h"
 #include "Field.h"
-#include "Plane.h"
 
-Plane* plane;
 Field* field;
 Ball* ball;
 /////////////////////////////////////////////////////
@@ -58,9 +56,6 @@ void init(void)
     posz = 10;
     
     rotation = 0.0f;
-    
-    plane = new Plane(2048, 2048);
-    
 
     //FIELD
     field = new Field();
@@ -121,8 +116,8 @@ void init(void)
     GLfloat lightColor1[] = { 0.74f, 0.84f, 0.84f, 1.0f };
     light1_position = new GLfloat[4];
     light1_position[0] = 0;
-    light1_position[1] = 50;
-    light1_position[2] = 100;
+    light1_position[1] = 20;
+    light1_position[2] = 10;
     light1_position[3] = 1;
     glLightfv(GL_LIGHT1, GL_AMBIENT, lightColor0);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
@@ -163,9 +158,6 @@ void display(void)
     glMaterialfv(GL_FRONT, GL_SPECULAR, mat0_specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat0_shininess);
     
-    float colorMat[]= {228/255.0, 35/255.0, 0/255.0};
-    //plane->display(30, colorMat);
-    
     /*Model field*/
     
     glPushMatrix();{
@@ -174,12 +166,7 @@ void display(void)
     }
     glPopMatrix();
    
-    
-    // Ball
-    //ball->draw();
-    
     /*Model of TEAMS  */
-    
     //TEAM A
     glPushMatrix();{
         glPushMatrix();
@@ -236,6 +223,11 @@ void display(void)
             glmDraw(AI3, GLM_SMOOTH);
         }
         glPopMatrix();
+    }
+    glPopMatrix();
+    glPushMatrix();{
+        glScalef(.4, .4, .4);
+        ball->draw();
     }
     glPopMatrix();
     

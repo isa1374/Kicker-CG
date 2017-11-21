@@ -20,7 +20,6 @@
 		CB0B048D1FC34F6300074D53 /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04831FC34F6300074D53 /* Field.cpp */; };
 		CB0B049C1FC3598800074D53 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB0B04771FC34DAD00074D53 /* GLUT.framework */; };
 		CB0B049D1FC3599100074D53 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB0B04761FC34DA300074D53 /* OpenGL.framework */; };
-		CB0B04A91FC387E400074D53 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04A81FC387E400074D53 /* Plane.cpp */; };
 		CB0B04AD1FC38E4700074D53 /* vecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04AC1FC38E4600074D53 /* vecs.cpp */; };
 		CB0B04AF1FC38E4D00074D53 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04AE1FC38E4D00074D53 /* Camera.cpp */; };
 /* End PBXBuildFile section */
@@ -56,8 +55,6 @@
 		CB0B04901FC34F6D00074D53 /* Field.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
 		CB0B049A1FC34F6E00074D53 /* glm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glm.h; sourceTree = "<group>"; };
 		CB0B049B1FC34F6E00074D53 /* glmint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glmint.h; sourceTree = "<group>"; };
-		CB0B04A71FC3865600074D53 /* Plane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
-		CB0B04A81FC387E400074D53 /* Plane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		CB0B04AA1FC38C4700074D53 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = KickerFP/Camera.h; sourceTree = SOURCE_ROOT; };
 		CB0B04AB1FC38CEF00074D53 /* vecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vecs.h; path = KickerFP/vecs.h; sourceTree = SOURCE_ROOT; };
 		CB0B04AC1FC38E4600074D53 /* vecs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vecs.cpp; sourceTree = "<group>"; };
@@ -117,8 +114,6 @@
 				CB0B049A1FC34F6E00074D53 /* glm.h */,
 				CB0B04AE1FC38E4D00074D53 /* Camera.cpp */,
 				CB0B049B1FC34F6E00074D53 /* glmint.h */,
-				CB0B04A71FC3865600074D53 /* Plane.h */,
-				CB0B04A81FC387E400074D53 /* Plane.cpp */,
 				CB0B04AC1FC38E4600074D53 /* vecs.cpp */,
 				CB0B04AA1FC38C4700074D53 /* Camera.h */,
 				CB0B04AB1FC38CEF00074D53 /* vecs.h */,
@@ -210,7 +205,6 @@
 				CB0B048A1FC34F6300074D53 /* glmimg_sim.c in Sources */,
 				CB0B048D1FC34F6300074D53 /* Field.cpp in Sources */,
 				CB0B046F1FC34D4800074D53 /* main.cpp in Sources */,
-				CB0B04A91FC387E400074D53 /* Plane.cpp in Sources */,
 				CB0B04861FC34F6300074D53 /* glmimg_jpg.c in Sources */,
 				CB0B048C1FC34F6300074D53 /* glmimg_sdl.c in Sources */,
 				CB0B04851FC34F6300074D53 /* glmimg.c in Sources */,

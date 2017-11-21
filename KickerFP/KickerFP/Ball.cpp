@@ -43,7 +43,6 @@ void Ball::draw() {
         glRotatef(30,1,0,0);
         glRotatef(30, 0, 1, 0);
         glRotatef(30, 0, 0, 1);
-        
         glColor3f(1, 1, 1);
         glutSolidSphere(.37, 12, 12);
         glColor3f(0, 0, 0);

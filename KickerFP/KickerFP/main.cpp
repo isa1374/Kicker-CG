@@ -29,20 +29,40 @@ float posz;
 
 float speed;
 
+//P1
 float positionX=-1.0;
 float positionY=2.0;
 int rotB=90;
-
+//P2
 float positionX2 = -1.0;
 float positionY2 = -2.0;
 int rotA=90;
+
+//AI1
+float posAI1x=2.0;
+float posAI1Y = -1.0;
+int rotAI1 = 90;
+//AI2
+float posAI2x=-2.0;
+float posAI2Y=-1.0;
+int rotAI2 = 90;
+//GKAI1
+float posGK1x=5.0;
+float posGK1y=0.0;
+float rotGP1=90;
+//GKAI2
+float posGK2x=-5.0;
+float posGK2y=0.0;
+float rotGP2=90;
+
+bool end = false;
 
 float positionXbola=0.0;
 float positionYbola=0.0;
 
 int goalA =0;
 int goalB =0;
-int timer = 100;
+int timer = 500;
 char A[15];
 char B[15];
 char fin[20];
@@ -202,24 +222,24 @@ void display(void)
         glPushMatrix();
         {
             // in position
-            glRotatef(90, 0.0f, -1.0f, 0.0f);
-            glTranslatef(2.0, .9f, -1.0);
+            glRotatef(rotAI1, 0.0f, -1.0f, 0.0f);
+            glTranslatef(posAI1x, .9f, posAI1Y);
             glmDraw(P1, GLM_SMOOTH);
         }
         glPopMatrix();
         glPushMatrix();
         {
             //in position
-            glRotatef(90, 0.0f, -1.0f, 0.0f);
-            glTranslatef(-2.0, .9f, -1.0);
+            glRotatef(rotAI2, 0.0f, -1.0f, 0.0f);
+            glTranslatef(posAI2x, .9f, posAI2Y);
             glmDraw(P2, GLM_SMOOTH);
         }
         glPopMatrix();
         glPushMatrix();
         {
             //in position GoalKeeper
-            glTranslatef(5, .9f, 0);
-            glRotatef(90, 0.0f, -1.0f, 0.0f);
+            glTranslatef(posGK1x, .9f, posGK1y);
+            glRotatef(rotGP1, 0.0f, -1.0f, 0.0f);
             glmDraw(P3, GLM_SMOOTH);
         }
         glPopMatrix();
@@ -248,8 +268,8 @@ void display(void)
         glPushMatrix();
         {
             //in position GoalKeeper
-            glTranslatef(-5.0, .9f, 0);
-            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glTranslatef(posGK2x, .9f, posGK2y);
+            glRotatef(rotGP2, 0.0f, 1.0f, 0.0f);
             glmDraw(AI3, GLM_SMOOTH);
         }
         glPopMatrix();
@@ -266,16 +286,76 @@ void display(void)
     glutSwapBuffers();
 }
 
+void updateAI(){
+    float distance1 = sqrt(((positionXbola - posAI1x)* (positionXbola - posAI1x)) + ((positionYbola- posAI1Y)* (positionYbola- posAI1Y)));
+    float distance2 = sqrt(((positionXbola - posAI2x)* (positionXbola - posAI2x)) + ((positionYbola- posAI2Y)* (positionYbola- posAI2Y)));
+
+        if(distance1<5.0 && distance1>1.0){
+            if(positionXbola>posAI1x){
+                posAI1x += .0100f;
+            }else{
+                posAI1x -= .0100f;
+            }
+            
+            if(positionYbola>posAI1Y){
+                posAI1Y+= .0100f;
+            }else{
+                posAI1Y -= .0100f;
+            }
+        }
+        if(distance2<5.0 && distance2>1.0){
+            if(positionXbola>posAI2x){
+                posAI2x += .0100f;
+            }else{
+                posAI2x -= .0100f;
+            }
+            
+            if(positionYbola>posAI2Y){
+                posAI2Y+= .0100f;
+            }else{
+                posAI2Y -= .0100f;
+            }
+        }
+}
+
+void updateGoalKeeperAI(){
+    float distance1 = sqrt(((positionXbola - posGK1x)* (positionXbola - posGK1x)) + ((positionYbola- posGK1y)* (positionYbola- posGK1y)));
+    float distance2 = sqrt(((positionXbola - posGK2x)* (positionXbola - posGK2x)) + ((positionYbola- posGK2y)* (positionYbola- posGK2y)));
+    float rev = -1.0;
+    
+        if(distance1>1.0 && distance1<10.0){
+            if(posGK1y<1.0){
+                posGK1y += .005f;
+            }else if( posGK1y<-1.0){
+                posGK1y -= 0.005f;
+            }
+        }
+        if(distance2>1.0 && distance2<10.0){
+            if(posGK2y<-1.0 ){
+                 posGK2y -= 0.005f;
+            }else if( posGK2y<1.0){
+                posGK2y += .005f;
+            }
+        }
+
+}
+
 void idle (void)
 {
+    
+    updateAI();
+    updateGoalKeeperAI();
     if(timer<0){
         timer =0;
         if(goalA == goalB){
             sprintf(msn, "EMPATE");
+            end = true;
         }else if(goalA>goalB){
             sprintf(msn, "El ganador es el equipo A");
+            end = true;
         }else if(goalB>goalA){
             sprintf(msn, "El ganador es el equipo B");
+            end = true;
         }
     }else{
         sprintf(fin, "Timer  %d", timer);

@@ -29,6 +29,9 @@ float posz;
 
 float speed;
 
+bool start = false;
+bool reiniciar = false;
+
 //P1
 float positionX=-1.0;
 float positionY=2.0;
@@ -62,11 +65,12 @@ float positionYbola=0.0;
 
 int goalA =0;
 int goalB =0;
-int timer = 500;
+int timer = 100;
 char A[15];
 char B[15];
 char fin[20];
 char msn[20];
+char st[20];
 
 
 GLfloat*    mat0_specular;
@@ -207,7 +211,8 @@ void display(void)
     displayText(100, 40, A);
     displayText(600, 40, B);
     displayText(350, 40, fin);
-    displayText(350, 750, msn);
+    displayText(320, 750, msn);
+    displayText(320,700, st);
     
     /*Model field*/
     glPushMatrix();{
@@ -290,13 +295,12 @@ void updateAI(){
     float distance1 = sqrt(((positionXbola - posAI1x)* (positionXbola - posAI1x)) + ((positionYbola- posAI1Y)* (positionYbola- posAI1Y)));
     float distance2 = sqrt(((positionXbola - posAI2x)* (positionXbola - posAI2x)) + ((positionYbola- posAI2Y)* (positionYbola- posAI2Y)));
 
-        if(distance1<5.0 && distance1>1.0){
+        if(distance1<5.0 && distance1>0.5){
             if(positionXbola>posAI1x){
                 posAI1x += .0100f;
             }else{
                 posAI1x -= .0100f;
             }
-            
             if(positionYbola>posAI1Y){
                 posAI1Y+= .0100f;
             }else{
@@ -306,6 +310,7 @@ void updateAI(){
         if(distance2<5.0 && distance2>1.0){
             if(positionXbola>posAI2x){
                 posAI2x += .0100f;
+                
             }else{
                 posAI2x -= .0100f;
             }
@@ -321,47 +326,98 @@ void updateAI(){
 void updateGoalKeeperAI(){
     float distance1 = sqrt(((positionXbola - posGK1x)* (positionXbola - posGK1x)) + ((positionYbola- posGK1y)* (positionYbola- posGK1y)));
     float distance2 = sqrt(((positionXbola - posGK2x)* (positionXbola - posGK2x)) + ((positionYbola- posGK2y)* (positionYbola- posGK2y)));
-    float rev = -1.0;
     
         if(distance1>1.0 && distance1<10.0){
-            if(posGK1y<1.0){
-                posGK1y += .005f;
-            }else if( posGK1y<-1.0){
-                posGK1y -= 0.005f;
+            if(posGK1y==1.0){
+                posGK1y -= .005f;
+            }
+            if( posGK1y==-1.0){
+                posGK1y += 0.005f;
             }
         }
         if(distance2>1.0 && distance2<10.0){
-            if(posGK2y<-1.0 ){
-                 posGK2y -= 0.005f;
-            }else if( posGK2y<1.0){
-                posGK2y += .005f;
+            if(posGK2y==-1.0 ){
+                 posGK2y += 0.005f;
+            }else if( posGK2y==1.0){
+                posGK2y -= .005f;
             }
         }
 
 }
 
+void reinit(){
+    goalA = 0;
+    goalB = 0;
+    timer = 100;
+    ball->reset();
+    start = false;
+    reiniciar = false;
+    end = false;
+    //P1
+    positionX=-1.0;
+    positionY=2.0;
+    rotB=90;
+    //P2
+    positionX2 = -1.0;
+    positionY2 = -2.0;
+    rotA=90;
+    
+    //AI1
+    posAI1x=2.0;
+    posAI1Y = -1.0;
+    rotAI1 = 90;
+    //AI2
+    posAI2x=-2.0;
+    posAI2Y=-1.0;
+    rotAI2 = 90;
+    //GKAI1
+    posGK1x=5.0;
+    posGK1y=0.0;
+    rotGP1=90;
+    //GKAI2
+    posGK2x=-5.0;
+    posGK2y=0.0;
+    rotGP2=90;
+    
+    positionXbola=0.0;
+    positionYbola=0.0;
+    
+}
+
 void idle (void)
 {
-    
-    updateAI();
-    updateGoalKeeperAI();
-    if(timer<0){
-        timer =0;
-        if(goalA == goalB){
-            sprintf(msn, "EMPATE");
-            end = true;
-        }else if(goalA>goalB){
-            sprintf(msn, "El ganador es el equipo A");
-            end = true;
-        }else if(goalB>goalA){
-            sprintf(msn, "El ganador es el equipo B");
-            end = true;
+    if(start){
+        updateAI();
+        updateGoalKeeperAI();
+        if(timer<0){
+            timer =0;
+            if(goalA == goalB){
+                sprintf(msn, "EMPATE");
+                end = true;
+            }else if(goalA>goalB){
+                sprintf(msn, "El ganador es el equipo A");
+                end = true;
+            }else if(goalB>goalA){
+                sprintf(msn, "El ganador es el equipo B");
+                end = true;
+            }
+        }else{
+            sprintf(st, "Presiona M para pausa");
+            sprintf(fin, "Timer  %d", timer);
+            timer -= 1;
         }
     }else{
-        sprintf(fin, "Timer  %d", timer);
-        timer -= 1;
+        sprintf(st, "Presiona P para iniciar");
+    }
+    if(end){
+        sprintf(st, "Presiona R para reiniciar");
     }
     glutPostRedisplay ();
+    
+    if(reiniciar){
+        sprintf(msn, "");
+        reinit();
+    }
 }
 
 void specialkeys(int key, int x, int y){
@@ -405,6 +461,15 @@ void keys(unsigned char key, int x, int y){
         case 'd': case 'D':
                 positionX += 0.100f;
                 rotB=90;
+            break;
+        case 'p': case 'P':
+            start = true;
+            break;
+        case 'm': case 'M':
+            start = false;
+            break;
+        case 'r': case 'R':
+            reiniciar = true;
             break;
     }
             

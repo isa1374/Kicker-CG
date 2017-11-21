@@ -18,13 +18,16 @@
 #include "Ball.h"
 #include "Field.h"
 
+
+void displayText(int x, int y, char *txt);
 Field* field;
 Ball* ball;
 /////////////////////////////////////////////////////
 float posx;
 float posy;
 float posz;
-float rotation;
+
+float speed;
 
 float positionX=-1.0;
 float positionY=2.0;
@@ -36,6 +39,14 @@ int rotA=90;
 
 float positionXbola=0.0;
 float positionYbola=0.0;
+
+int goalA =0;
+int goalB =0;
+int timer = 100;
+char A[15];
+char B[15];
+char fin[20];
+char msn[20];
 
 
 GLfloat*    mat0_specular;
@@ -67,7 +78,7 @@ void init(void)
     posy=20.0;
     posz = 10;
     
-    rotation = 0.0f;
+    speed = 5.0;
 
     //FIELD
     field = new Field();
@@ -170,8 +181,15 @@ void display(void)
     glMaterialfv(GL_FRONT, GL_SPECULAR, mat0_specular);
     glMaterialfv(GL_FRONT, GL_SHININESS, mat0_shininess);
     
-    /*Model field*/
     
+    sprintf(A, "Team A : %d", goalA);
+    sprintf(B, "Team B : %d", goalB);
+    displayText(100, 40, A);
+    displayText(600, 40, B);
+    displayText(350, 40, fin);
+    displayText(350, 750, msn);
+    
+    /*Model field*/
     glPushMatrix();{
         glRotatef(90, -15.0f, .2f, 0.0f);
         field->draw();
@@ -241,19 +259,28 @@ void display(void)
         glTranslated(positionXbola , .1, positionYbola);
         glScalef(.4, .4, .4);
         ball->draw();
+        ball->inMotion(100.0, 20.0);
     }
     glPopMatrix();
-    
-    
+
     glutSwapBuffers();
 }
 
 void idle (void)
 {
-
-    rotation += 0.5f;
-    
-   
+    if(timer<0){
+        timer =0;
+        if(goalA == goalB){
+            sprintf(msn, "EMPATE");
+        }else if(goalA>goalB){
+            sprintf(msn, "El ganador es el equipo A");
+        }else if(goalB>goalA){
+            sprintf(msn, "El ganador es el equipo B");
+        }
+    }else{
+        sprintf(fin, "Timer  %d", timer);
+        timer -= 1;
+    }
     glutPostRedisplay ();
 }
 
@@ -309,13 +336,7 @@ void keys(unsigned char key, int x, int y){
 
 
 /*void keys(unsigned char key, int x, int y){
-    
-    if(positionY==-0.000f){
-        positionY=0.000f;
-    }
-    if(positionX==-0.000f){
-        positionX=0.000f;
-    }
+ 
     
     if(positionXbola == positionX && positionYbola == positionY){
         positionXbola = positionX;
@@ -524,3 +545,29 @@ int main(int argc, char** argv)
     return 0;   /* ANSI C requires main to return int. */
 }
 
+void displayText(int x, int y, char *txt){
+    GLboolean lightning;
+    GLint viewportCoods[4];
+    glColor3f(1.0, 0.0, 0.0);
+    glGetBooleanv(GL_LIGHTING, &lightning);
+    glGetIntegerv(GL_VIEWPORT, viewportCoods);
+    if(lightning) glDisable(GL_LIGHTING);
+    
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0.0, viewportCoods[2], 0.0, viewportCoods[3]);
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    
+    glRasterPos2i(x, viewportCoods[3]-y);
+    
+    while(*txt){glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *txt); txt++;}
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    
+    if(lightning) glEnable(GL_LIGHTING);
+}

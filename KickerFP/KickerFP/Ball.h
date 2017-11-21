@@ -15,9 +15,13 @@ class Ball {
         float posx;
         float posy;
         float posz;
+        float oldposx;
+        float oldposy;
+        float oldposz; 
     
 		void draw();
         void inMotion(float vi, float dv);
         void stopMotion();
+        void update(float posx, float posz); 
         void reset();
 };

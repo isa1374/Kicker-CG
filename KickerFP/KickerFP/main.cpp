@@ -294,7 +294,7 @@ int main(int argc, char** argv)
     init ();
     glutDisplayFunc(display);
     glutIdleFunc (idle);
-    glutKeyboardFunc(keyboard);
+    //glutKeyboardFunc(keyboard);
     glutMainLoop();
     return 0;   /* ANSI C requires main to return int. */
 }

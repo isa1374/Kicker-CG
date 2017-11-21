@@ -25,6 +25,11 @@ float posx;
 float posy;
 float posz;
 float rotation;
+float positionX=0.0;
+float positionY=0.0;
+float positionXbola=0.0;
+float positionYbola=0.0;
+int rotB=90;
 
 GLfloat*    mat0_specular;
 GLfloat*    mat0_diffuse;
@@ -71,28 +76,28 @@ void init(void)
     glLoadIdentity();
     
     //ROBOT
-    P1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    P1 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(P1);
     glmVertexNormals(P1, 45.0f, false);
     glmFacetNormals(P1);
-    P2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    P2 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(P2);
     glmVertexNormals(P2, 45.0f, false);
     glmFacetNormals(P2);
-    P3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    P3 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(P3);
     glmVertexNormals(P3, 45.0f, false);
     glmFacetNormals(P3);
     
-    AI1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    AI1 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(AI1);
     glmVertexNormals(AI1, 45.0f, false);
     glmFacetNormals(AI1);
-    AI2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    AI2 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(AI2);
     glmVertexNormals(AI2, 45.0f, false);
     glmFacetNormals(AI2);
-    AI3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    AI3 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(AI3);
     glmVertexNormals(AI3, 45.0f, false);
     glmFacetNormals(AI3);
@@ -202,8 +207,8 @@ void display(void)
         glPushMatrix();
         {
             //in position
-            glTranslatef(-1.0, .9f, 2.0);
-            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glTranslatef(positionX, .9f, positionY);
+            glRotatef(rotB, 0.0f, 1.0f, 0.0f);
             glmDraw(AI1, GLM_SMOOTH);
         }
         glPopMatrix();
@@ -226,6 +231,7 @@ void display(void)
     }
     glPopMatrix();
     glPushMatrix();{
+        glTranslated(positionXbola , .1, positionYbola);
         glScalef(.4, .4, .4);
         ball->draw();
     }
@@ -244,29 +250,222 @@ void idle (void)
     glutPostRedisplay ();
 }
 
-void keyboard(unsigned char key, int x, int y){
-    switch (key){
-        case 'w':
-            posy += 3.0f;
-            break;
-        case 's':
-            posy -= 3.0f;
-            break;
-        case 'a':
-            posx -= 3.0f;
-            break;
-        case 'd':
-            posx += 3.0f;
-            break;
-        case 'z':
-            posz -= 3.0f;
-            break;
-        case 'x':
-            posz+= 3.0f;
-            break;
+
+
+void keys(unsigned char key, int x, int y){
+  
+        if (key == 'w'){
+            positionY -= 0.100f;
+            rotB=180;
+        }
+        if (key == 's'){
+            positionY += 0.100f;
+            rotB=0;
+        }
+        if (key == 'a'){
+            positionX -= 0.100f;
+            rotB=270;
+        }
+        if (key == 'd'){
+            positionX += 0.100f;
+            rotB=90;
+            }
+            
+    
+
     }
-    glutPostRedisplay();
-}
+    
+    
+
+
+
+
+//No funciona para que la bola siga al jugador todo el tiempo que esta en la misma posicion
+
+
+/*void keys(unsigned char key, int x, int y){
+    
+    if(positionY==-0.000f){
+        positionY=0.000f;
+    }
+    if(positionX==-0.000f){
+        positionX=0.000f;
+    }
+    
+    if(positionXbola == positionX && positionYbola == positionY){
+        positionXbola = positionX;
+        positionYbola = positionY;
+        printf("Iguales");
+        if (key == 'w'){
+            positionYbola -= 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+            
+        }
+        if (key == 's'){
+            positionYbola += 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+            
+        }
+        if (key == 'a'){
+            positionXbola -= 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+            
+        }
+        if (key == 'd'){
+            
+            
+            positionXbola += 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+        }
+        if (key == 'x'){
+            printf("X");
+            printf("%.3f\n", positionXbola);
+            for (float p = 0.000; p==1.5; p=p+0.010) {
+                positionXbola=positionXbola+p;
+            }
+        }
+    }
+    if (key == 'w'){
+        positionY -= 0.100f;
+        if(positionY==-0.000f){
+            positionY=0.000f;
+        }
+        if(positionX==-0.000f){
+            positionX=0.000f;
+        }
+        printf("X jugador");
+        printf("%.3f\n", positionX);
+        printf("Y jugador");
+        printf("%.3f\n", positionY);
+        printf("X bola");
+        printf("%.3f\n", positionXbola);
+        printf("Y bola");
+        printf("%.3f\n", positionYbola);
+    }
+    if (key == 's'){
+        positionY += 0.100f;
+        if(positionY==-0.000f){
+            positionY=0.000f;
+        }
+        if(positionX==-0.000f){
+            positionX=0.000f;
+        }
+        printf("X jugador");
+        printf("%.3f\n", positionX);
+        printf("Y jugador");
+        printf("%.3f\n", positionY);
+        printf("X bola");
+        printf("%.3f\n", positionXbola);
+        printf("Y bola");
+        printf("%.3f\n", positionYbola);
+    }
+    if (key == 'a'){
+        positionX -= 0.100f;
+        if(positionY==-0.000f){
+            positionY=0.000f;
+        }
+        if(positionX==-0.000f){
+            positionX=0.000f;
+        }
+        printf("X jugador");
+        printf("%.3f\n", positionX);
+        printf("Y jugador");
+        printf("%.3f\n", positionY);
+        printf("X bola");
+        printf("%.3f\n", positionXbola);
+        printf("Y bola");
+        printf("%.3f\n", positionYbola);
+    }
+    if (key == 'd'){
+        positionX += 0.100f;
+        if(positionY==-0.000f){
+            positionY=0.000f;
+        }
+        if(positionX==-0.000f){
+            positionX=0.000f;
+        }
+        
+        printf("X jugador");
+        printf("%.3f\n", positionX);
+        printf("Y jugador");
+        printf("%.3f\n", positionY);
+        printf("X bola");
+        printf("%.3f\n", positionXbola);
+        printf("Y bola");
+        printf("%.3f\n", positionYbola);
+    }
+    if(positionXbola == positionX && positionYbola == positionY){
+        positionXbola = positionX;
+        positionYbola = positionY;
+        printf("Iguales");
+        if (key == 'w'){
+            positionYbola -= 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+        }
+        if (key == 's'){
+            positionYbola += 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+        }
+        if (key == 'a'){
+            positionXbola -= 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+        }
+        if (key == 'd'){
+            positionXbola += 0.100f;
+            if(positionY==-0.000f){
+                positionY=0.000f;
+            }
+            if(positionX==-0.000f){
+                positionX=0.000f;
+            }
+            
+        }
+        if (key == 'x'){
+            printf("X");
+            printf("%.3f\n", positionXbola);
+            for (float p = 0.000; p==1.5; p=p+0.010) {
+                positionXbola=positionXbola+p;
+            }
+        }
+    }
+    
+    
+}*/
 
 
 void reshape (int w, int h)
@@ -294,7 +493,7 @@ int main(int argc, char** argv)
     init ();
     glutDisplayFunc(display);
     glutIdleFunc (idle);
-    glutKeyboardFunc(keyboard);
+    glutKeyboardFunc(keys);
     glutMainLoop();
     return 0;   /* ANSI C requires main to return int. */
 }

@@ -5,7 +5,7 @@
 Field::Field() {
 	float px = 0;
 	float py = 0; 
-	float radio = 1.3;
+	float radio = 2.0;
 }
 
 Field::~Field() {

@@ -14,7 +14,7 @@ class Field {
 
 		float px = 0;
 		float py = 0;
-		float radio;
+		float radio=2.0;
 		float calx;
 		float caly;
 

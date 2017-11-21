@@ -25,11 +25,18 @@ float posx;
 float posy;
 float posz;
 float rotation;
-float positionX=0.0;
-float positionY=0.0;
+
+float positionX=-1.0;
+float positionY=2.0;
+int rotB=90;
+
+float positionX2 = -1.0;
+float positionY2 = -2.0;
+int rotA=90;
+
 float positionXbola=0.0;
 float positionYbola=0.0;
-int rotB=90;
+
 
 GLfloat*    mat0_specular;
 GLfloat*    mat0_diffuse;
@@ -76,28 +83,28 @@ void init(void)
     glLoadIdentity();
     
     //ROBOT
-    P1 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    P1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(P1);
     glmVertexNormals(P1, 45.0f, false);
     glmFacetNormals(P1);
-    P2 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    P2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(P2);
     glmVertexNormals(P2, 45.0f, false);
     glmFacetNormals(P2);
-    P3 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    P3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(P3);
     glmVertexNormals(P3, 45.0f, false);
     glmFacetNormals(P3);
     
-    AI1 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    AI1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(AI1);
     glmVertexNormals(AI1, 45.0f, false);
     glmFacetNormals(AI1);
-    AI2 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    AI2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(AI2);
     glmVertexNormals(AI2, 45.0f, false);
     glmFacetNormals(AI2);
-    AI3 = glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    AI3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     glmUnitize(AI3);
     glmVertexNormals(AI3, 45.0f, false);
     glmFacetNormals(AI3);
@@ -215,8 +222,8 @@ void display(void)
         glPushMatrix();
         {
             //in position
-            glTranslatef(-1.0, .9f, -2.0);
-            glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glTranslatef(positionX2, .9f, positionY2);
+            glRotatef(rotA, 0.0f, 1.0f, 0.0f);
             glmDraw(AI2, GLM_SMOOTH);
         }
         glPopMatrix();
@@ -250,30 +257,51 @@ void idle (void)
     glutPostRedisplay ();
 }
 
-
+void specialkeys(int key, int x, int y){
+    glutIgnoreKeyRepeat(key);
+    switch (key) {
+        case GLUT_KEY_UP:
+            positionY2 -= 0.100f;
+            rotA=180;
+            break;
+        case GLUT_KEY_DOWN:
+            positionY2 += 0.100f;
+            rotA=0;
+            break;
+        case GLUT_KEY_LEFT:
+            positionX2 -= 0.100f;
+            rotA=270;
+            break;
+        case GLUT_KEY_RIGHT:
+            positionX2 += 0.100f;
+            rotA=90;
+            break;
+    }
+    glutPostRedisplay();
+}
 
 void keys(unsigned char key, int x, int y){
-  
-        if (key == 'w'){
-            positionY -= 0.100f;
-            rotB=180;
-        }
-        if (key == 's'){
-            positionY += 0.100f;
-            rotB=0;
-        }
-        if (key == 'a'){
-            positionX -= 0.100f;
-            rotB=270;
-        }
-        if (key == 'd'){
-            positionX += 0.100f;
-            rotB=90;
-            }
-            
-    
-
+    glutIgnoreKeyRepeat(key);
+    switch(key){
+        case'w': case 'W':
+                positionY -= 0.100f;
+                rotB=180;
+            break;
+        case 's': case'S':
+                positionY += 0.100f;
+                rotB=0;
+            break;
+        case 'a': case 'A':
+                positionX -= 0.100f;
+                rotB=270;
+            break;
+        case 'd': case 'D':
+                positionX += 0.100f;
+                rotB=90;
+            break;
     }
+            
+}
 
 
 
@@ -490,6 +518,7 @@ int main(int argc, char** argv)
     init ();
     glutDisplayFunc(display);
     glutIdleFunc (idle);
+    glutSpecialFunc(specialkeys);
     glutKeyboardFunc(keys);
     glutMainLoop();
     return 0;   /* ANSI C requires main to return int. */

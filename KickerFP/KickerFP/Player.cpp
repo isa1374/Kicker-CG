@@ -6,11 +6,13 @@
 //  Copyright © 2017 Isa. All rights reserved.
 //
 
-#include <stdio.h>
+#include <iostream>
+#include <OpenGL/OpenGL.h>
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
-#include "glm.h"
+#include <math.h>
+#include <stdio.h>
 #include "Player.h"
 
 Player::Player(bool gk, float x, float z){
@@ -24,6 +26,11 @@ Player::Player(bool gk, float x, float z){
     glmVertexNormals(player, 45.0f, false);
     glmFacetNormals(player);
     
+    diffuse[0] = 0.8f*((float)rand() / (float)RAND_MAX);
+    diffuse[1] = ((float)rand() / (float)RAND_MAX);
+    diffuse[2] = ((float)rand() / (float)RAND_MAX);
+    
+
 }
 
 Player::~Player(){
@@ -36,8 +43,16 @@ bool Player::inCollision(Player* other){
 }
 
 void Player::draw(){
-        //glTranslatef(posx, posy, posz);
-        glmDraw(player, GL_SMOOTH);
+    
+    if(goalkeeper){
+        diffuse[0]= .81;
+        diffuse[1]=.71;
+        diffuse[2] =.23;
+    }
+    
+    glEnable(GL_COLOR_MATERIAL);
+    glColor3fv(diffuse);
+    glmDraw(player, GL_SMOOTH);
 }
 
 

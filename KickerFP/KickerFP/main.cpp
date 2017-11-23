@@ -157,21 +157,17 @@ void init(void)
     mat0_diffuse[3] = 1.0f;
     
     mat0_shininess = new GLfloat[1];
-    mat0_shininess[0] = 100.0f;
+    mat0_shininess[0] = 20.0f;
     
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat0_diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat0_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat0_shininess);
-    
+
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHT1);
+    //glEnable(GL_LIGHT1);
     
 }
 
 void display(void)
 {
-    
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     GLfloat ambientColor[] = { 0.85f, 0.85f, 0.1f, 1.0f };

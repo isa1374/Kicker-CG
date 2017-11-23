@@ -29,7 +29,7 @@ public:
     int rot;
     float radius;
     bool goalkeeper;
-    
+    float diffuse[3];
 };
 
 #endif /* Player_h */

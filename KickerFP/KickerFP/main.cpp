@@ -73,6 +73,7 @@ char B[15];
 char fin[20];
 char msn[20];
 char st[20];
+char ki[20];
 
 bool moving = false;
 
@@ -158,6 +159,10 @@ void init(void)
     mat0_shininess = new GLfloat[1];
     mat0_shininess[0] = 100.0f;
     
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat0_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat0_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat0_shininess);
+    
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
@@ -173,11 +178,6 @@ void display(void)
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
     
     
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat0_diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat0_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat0_shininess);
-    
-    
     sprintf(A, "Team A : %d", goalA);
     sprintf(B, "Team B : %d", goalB);
     displayText(100, 40, A);
@@ -185,6 +185,7 @@ void display(void)
     displayText(350, 40, fin);
     displayText(320, 750, msn);
     displayText(320,700, st);
+    displayText(200, 750, ki);
     
   
     
@@ -313,15 +314,31 @@ void updateGoalKeeperAI(){
 
 }
 
-void movingBall(){
+void kick(){
     if(ball->inCollision(positionX, positionY, .05)){
-        positionXbola = positionX;
-        positionYbola = positionY;
-    }else
-    if(ball->inCollision(positionX2, positionY2, .05)){
-        positionXbola = positionX2;
-        positionYbola = positionY2;
+        positionXbola += 0.5;
+        positionYbola += 0.01;
+    }else if(ball->inCollision(positionX2, positionY2, .05)){
+        positionXbola += 0.5;
+        positionYbola += 0.01;
     }
+}
+
+void movingBall(){
+    bool move = false;
+    float distance1 = sqrt(((positionXbola - posAI2x)* (positionXbola - posAI1x)) + ((positionYbola- posAI1Y)* (positionYbola- posAI1Y)));
+    float distance2 = sqrt(((positionXbola - posAI2x)* (positionXbola - posAI2x)) + ((positionYbola- posAI2Y)* (positionYbola- posAI2Y)));
+    
+    if(distance1<0.05){
+        move = true;
+    }
+    if(distance2<0.05){
+        move = true;
+    }
+    if(move){
+        positionXbola += 0.005;
+    }
+
 }
 
 
@@ -344,11 +361,11 @@ void reinit(){
     
     //AI1
     posAI1x=2.0;
-    posAI1Y = -1.0;
+    posAI1Y = -2.0;
     rotAI1 = 90;
     //AI2
-    posAI2x=-2.0;
-    posAI2Y=-1.0;
+    posAI2x=2.0;
+    posAI2Y=2.0;
     rotAI2 = 90;
     //GKAI1
     posGK1x=5.0;
@@ -361,6 +378,8 @@ void reinit(){
     
     positionXbola=0.0;
     positionYbola=0.0;
+    
+    timer= 500;
     
 }
 
@@ -384,6 +403,7 @@ void idle (void)
             }
         }else{
             sprintf(st, "Presiona M para pausa");
+            sprintf(ki, "Presiona la SPACEBAR para patear");
             sprintf(fin, "Timer  %d", timer);
             timer -= 1;
         }
@@ -452,6 +472,9 @@ void keys(unsigned char key, int x, int y){
         case 'r': case 'R':
             reiniciar = true;
             break;
+        case 32:
+            kick();
+            break; 
     }
             
 }

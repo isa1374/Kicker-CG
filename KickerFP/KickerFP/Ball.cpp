@@ -1,4 +1,7 @@
 #include "Ball.h"
+#include <iostream>
+#include <sstream>
+#include <math.h>
 
 Ball::Ball() {
     posx=0.0;
@@ -31,11 +34,6 @@ void Ball::reset(){
     posz=0.0;
 }
 
-void Ball::update(float x, float z){
-    posx = x; 
-    posz = z;
-}
-
 bool Ball::inCollision(float x, float y, float r){
     
     float r1 = radius;
@@ -48,8 +46,8 @@ bool Ball::inCollision(float x, float y, float r){
     float dx2 = (x2 - x1)*(x2 - x1);
     float dz2 = (z2 - z1)*(z2 - z1);
     
-    float dist = dx2 + dz2;
-    float sumR2 = (r1 + r2) * (r1 + r2);
+    float dist = sqrt(dx2 + dz2);
+    float sumR2 = (r1 + r2);
     
     
     if (dist < sumR2) {

@@ -22,7 +22,6 @@ class Ball {
 		void draw();
         void inMotion(float vi, float dv);
         void stopMotion();
-        void update(float posx, float posz);
         bool inCollision(float x, float y, float r);
         void reset();
 };

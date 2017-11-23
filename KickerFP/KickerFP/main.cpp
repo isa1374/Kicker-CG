@@ -400,6 +400,7 @@ void idle (void)
     }
     if(end){
         sprintf(st, "Presiona R para reiniciar");
+        sprintf(ki, "");
     }
     glutPostRedisplay ();
     

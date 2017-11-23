@@ -8,8 +8,7 @@ class Ball {
 	public:
 		Ball();
 		~Ball();
-    
-        bool isMoving;
+
         float initialVel;
         float decreaseVel;
         float posx;
@@ -17,11 +16,13 @@ class Ball {
         float posz;
         float oldposx;
         float oldposy;
-        float oldposz; 
+        float oldposz;
+        float radius;
     
 		void draw();
         void inMotion(float vi, float dv);
         void stopMotion();
-        void update(float posx, float posz); 
+        void update(float posx, float posz);
+        bool inCollision(float x, float y, float r);
         void reset();
 };

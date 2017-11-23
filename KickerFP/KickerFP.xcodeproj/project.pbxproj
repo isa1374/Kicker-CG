@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB0B046F1FC34D4800074D53 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B046E1FC34D4800074D53 /* main.cpp */; };
-		CB0B04841FC34F6300074D53 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047A1FC34F6200074D53 /* Ball.cpp */; };
-		CB0B04851FC34F6300074D53 /* glmimg.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047B1FC34F6200074D53 /* glmimg.c */; };
-		CB0B04861FC34F6300074D53 /* glmimg_jpg.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047C1FC34F6200074D53 /* glmimg_jpg.c */; };
-		CB0B04871FC34F6300074D53 /* glmimg_devil.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047D1FC34F6200074D53 /* glmimg_devil.c */; };
-		CB0B04881FC34F6300074D53 /* glm.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047E1FC34F6200074D53 /* glm.c */; };
-		CB0B04891FC34F6300074D53 /* glmimg_png.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047F1FC34F6200074D53 /* glmimg_png.c */; };
-		CB0B048A1FC34F6300074D53 /* glmimg_sim.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04801FC34F6200074D53 /* glmimg_sim.c */; };
-		CB0B048B1FC34F6300074D53 /* glm_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04811FC34F6200074D53 /* glm_util.c */; };
-		CB0B048C1FC34F6300074D53 /* glmimg_sdl.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04821FC34F6200074D53 /* glmimg_sdl.c */; };
-		CB0B048D1FC34F6300074D53 /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04831FC34F6300074D53 /* Field.cpp */; };
+		CB0B00EC1FC6C19F0068B293 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B046E1FC34D4800074D53 /* main.cpp */; };
+		CB0B00ED1FC6C19F0068B293 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047A1FC34F6200074D53 /* Ball.cpp */; };
+		CB0B00EE1FC6C19F0068B293 /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04831FC34F6300074D53 /* Field.cpp */; };
+		CB0B00EF1FC6C19F0068B293 /* glm_util.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04811FC34F6200074D53 /* glm_util.c */; };
+		CB0B00F01FC6C19F0068B293 /* glm.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047E1FC34F6200074D53 /* glm.c */; };
+		CB0B00F11FC6C19F0068B293 /* glmimg_devil.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047D1FC34F6200074D53 /* glmimg_devil.c */; };
+		CB0B00F21FC6C19F0068B293 /* glmimg_jpg.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047C1FC34F6200074D53 /* glmimg_jpg.c */; };
+		CB0B00F31FC6C19F0068B293 /* glmimg_png.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047F1FC34F6200074D53 /* glmimg_png.c */; };
+		CB0B00F41FC6C19F0068B293 /* glmimg_sdl.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04821FC34F6200074D53 /* glmimg_sdl.c */; };
+		CB0B00F51FC6C19F0068B293 /* glmimg_sim.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04801FC34F6200074D53 /* glmimg_sim.c */; };
+		CB0B00F61FC6C19F0068B293 /* glmimg.c in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047B1FC34F6200074D53 /* glmimg.c */; };
+		CB0B00F71FC6C19F0068B293 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04AE1FC38E4D00074D53 /* Camera.cpp */; };
+		CB0B00F81FC6C19F0068B293 /* glmint.h in Sources */ = {isa = PBXBuildFile; fileRef = CB0B049B1FC34F6E00074D53 /* glmint.h */; };
+		CB0B00F91FC6C19F0068B293 /* vecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04AC1FC38E4600074D53 /* vecs.cpp */; };
+		CB0B00FA1FC6C19F0068B293 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B00EA1FC6B7900068B293 /* Player.cpp */; };
 		CB0B049C1FC3598800074D53 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB0B04771FC34DAD00074D53 /* GLUT.framework */; };
 		CB0B049D1FC3599100074D53 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB0B04761FC34DA300074D53 /* OpenGL.framework */; };
-		CB0B04AD1FC38E4700074D53 /* vecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04AC1FC38E4600074D53 /* vecs.cpp */; };
-		CB0B04AF1FC38E4D00074D53 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04AE1FC38E4D00074D53 /* Camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CB0B00E91FC6B6090068B293 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		CB0B00EA1FC6B7900068B293 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		CB0B046B1FC34D4800074D53 /* KickerFP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KickerFP; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0B046E1FC34D4800074D53 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = KickerFP/main.cpp; sourceTree = SOURCE_ROOT; };
 		CB0B04761FC34DA300074D53 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -77,6 +81,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB0B00E71FC68A630068B293 /* header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
+		CB0B00E81FC68A850068B293 /* source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
 		CB0B04621FC34D4800074D53 = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +115,6 @@
 		CB0B046D1FC34D4800074D53 /* KickerFP */ = {
 			isa = PBXGroup;
 			children = (
-				CB947E291FC3BD94000734F8 /* assets */,
 				CB0B046E1FC34D4800074D53 /* main.cpp */,
 				CB0B047A1FC34F6200074D53 /* Ball.cpp */,
 				CB0B04831FC34F6300074D53 /* Field.cpp */,
@@ -109,14 +126,19 @@
 				CB0B04821FC34F6200074D53 /* glmimg_sdl.c */,
 				CB0B04801FC34F6200074D53 /* glmimg_sim.c */,
 				CB0B047B1FC34F6200074D53 /* glmimg.c */,
-				CB0B048F1FC34F6D00074D53 /* Ball.h */,
-				CB0B04901FC34F6D00074D53 /* Field.h */,
-				CB0B049A1FC34F6E00074D53 /* glm.h */,
 				CB0B04AE1FC38E4D00074D53 /* Camera.cpp */,
 				CB0B049B1FC34F6E00074D53 /* glmint.h */,
 				CB0B04AC1FC38E4600074D53 /* vecs.cpp */,
+				CB0B00EA1FC6B7900068B293 /* Player.cpp */,
+				CB0B048F1FC34F6D00074D53 /* Ball.h */,
+				CB0B04901FC34F6D00074D53 /* Field.h */,
+				CB0B049A1FC34F6E00074D53 /* glm.h */,
 				CB0B04AA1FC38C4700074D53 /* Camera.h */,
 				CB0B04AB1FC38CEF00074D53 /* vecs.h */,
+				CB0B00E91FC6B6090068B293 /* Player.h */,
+				CB0B00E81FC68A850068B293 /* source */,
+				CB0B00E71FC68A630068B293 /* header */,
+				CB947E291FC3BD94000734F8 /* assets */,
 			);
 			path = KickerFP;
 			sourceTree = "<group>";
@@ -197,19 +219,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB0B04AD1FC38E4700074D53 /* vecs.cpp in Sources */,
-				CB0B04881FC34F6300074D53 /* glm.c in Sources */,
-				CB0B04AF1FC38E4D00074D53 /* Camera.cpp in Sources */,
-				CB0B04841FC34F6300074D53 /* Ball.cpp in Sources */,
-				CB0B048B1FC34F6300074D53 /* glm_util.c in Sources */,
-				CB0B048A1FC34F6300074D53 /* glmimg_sim.c in Sources */,
-				CB0B048D1FC34F6300074D53 /* Field.cpp in Sources */,
-				CB0B046F1FC34D4800074D53 /* main.cpp in Sources */,
-				CB0B04861FC34F6300074D53 /* glmimg_jpg.c in Sources */,
-				CB0B048C1FC34F6300074D53 /* glmimg_sdl.c in Sources */,
-				CB0B04851FC34F6300074D53 /* glmimg.c in Sources */,
-				CB0B04891FC34F6300074D53 /* glmimg_png.c in Sources */,
-				CB0B04871FC34F6300074D53 /* glmimg_devil.c in Sources */,
+				CB0B00EC1FC6C19F0068B293 /* main.cpp in Sources */,
+				CB0B00ED1FC6C19F0068B293 /* Ball.cpp in Sources */,
+				CB0B00EE1FC6C19F0068B293 /* Field.cpp in Sources */,
+				CB0B00EF1FC6C19F0068B293 /* glm_util.c in Sources */,
+				CB0B00F01FC6C19F0068B293 /* glm.c in Sources */,
+				CB0B00F11FC6C19F0068B293 /* glmimg_devil.c in Sources */,
+				CB0B00F21FC6C19F0068B293 /* glmimg_jpg.c in Sources */,
+				CB0B00F31FC6C19F0068B293 /* glmimg_png.c in Sources */,
+				CB0B00F41FC6C19F0068B293 /* glmimg_sdl.c in Sources */,
+				CB0B00F51FC6C19F0068B293 /* glmimg_sim.c in Sources */,
+				CB0B00F61FC6C19F0068B293 /* glmimg.c in Sources */,
+				CB0B00F71FC6C19F0068B293 /* Camera.cpp in Sources */,
+				CB0B00F81FC6C19F0068B293 /* glmint.h in Sources */,
+				CB0B00F91FC6C19F0068B293 /* vecs.cpp in Sources */,
+				CB0B00FA1FC6C19F0068B293 /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

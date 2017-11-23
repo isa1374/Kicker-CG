@@ -17,11 +17,13 @@
 #include "glm.h"
 #include "Ball.h"
 #include "Field.h"
+#include "Player.h"
 
 
 void displayText(int x, int y, char *txt);
 Field* field;
 Ball* ball;
+Player* player;
 /////////////////////////////////////////////////////
 float posx;
 float posy;
@@ -43,11 +45,11 @@ int rotA=90;
 
 //AI1
 float posAI1x=2.0;
-float posAI1Y = -1.0;
+float posAI1Y = -2.0;
 int rotAI1 = 90;
 //AI2
-float posAI2x=-2.0;
-float posAI2Y=-1.0;
+float posAI2x=2.0;
+float posAI2Y=2.0;
 int rotAI2 = 90;
 //GKAI1
 float posGK1x=5.0;
@@ -65,12 +67,14 @@ float positionYbola=0.0;
 
 int goalA =0;
 int goalB =0;
-int timer = 100;
+int timer = 500;
 char A[15];
 char B[15];
 char fin[20];
 char msn[20];
 char st[20];
+
+bool moving = false;
 
 
 GLfloat*    mat0_specular;
@@ -79,16 +83,12 @@ GLfloat*    mat0_shininess;
 GLfloat*    light0_position;
 GLfloat*    light1_position;
 
-
-
-GLMmodel*    P1;
-GLMmodel*    P2;
-GLMmodel*    P3;
-
-GLMmodel*    AI1;
-GLMmodel*    AI2;
-GLMmodel*    AI3;
-
+Player*    P1;
+Player*    P2;
+Player*    P3;
+Player*    AI1;
+Player*    AI2;
+Player*    AI3;
 
 void init(void)
 {
@@ -118,40 +118,12 @@ void init(void)
     glLoadIdentity();
     
     //ROBOT
-    P1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
-    glmUnitize(P1);
-    glmVertexNormals(P1, 45.0f, false);
-    glmFacetNormals(P1);
-    P2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
-    glmUnitize(P2);
-    glmVertexNormals(P2, 45.0f, false);
-    glmFacetNormals(P2);
-    P3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
-    glmUnitize(P3);
-    glmVertexNormals(P3, 45.0f, false);
-    glmFacetNormals(P3);
-    
-    AI1 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
-    glmUnitize(AI1);
-    glmVertexNormals(AI1, 45.0f, false);
-    glmFacetNormals(AI1);
-    AI2 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
-    glmUnitize(AI2);
-    glmVertexNormals(AI2, 45.0f, false);
-    glmFacetNormals(AI2);
-    AI3 = glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
-    glmUnitize(AI3);
-    glmVertexNormals(AI3, 45.0f, false);
-    glmFacetNormals(AI3);
-    
-    // When the model is too big make it fit inside a 1x1x1 cube:
-    //glmUnitize(model);
-    // You can also scale it later:
-    //glmScale(model, 2.0f);
-    
-    // When the model doesn't have normals, glm can add them:
-    //glmVertexNormals(model, 45.0f, false); // first per vertex
-    //glmFacetNormals(model); // and then per face
+    P1 = new Player(false, posAI1x, posAI1Y);
+    P2 = new Player(false, posAI2x, posAI2Y);
+    P3 = new Player(true, posGK1x, posGK1y);
+    AI1 = new Player(false,positionX, positionY);
+    AI2 = new Player(false, positionX2, positionY2);
+    AI3 = new Player(true, posGK2x, posGK2y);
     
     GLfloat lightColor0[] = { 1,1,1,1.0f};
     light0_position = new GLfloat[4];
@@ -214,6 +186,8 @@ void display(void)
     displayText(320, 750, msn);
     displayText(320,700, st);
     
+  
+    
     /*Model field*/
     glPushMatrix();{
         glRotatef(90, -15.0f, .2f, 0.0f);
@@ -221,37 +195,31 @@ void display(void)
     }
     glPopMatrix();
    
+   
     /*Model of TEAMS  */
     //TEAM A
     glPushMatrix();{
-        glPushMatrix();
-        {
-            // in position
-            glRotatef(rotAI1, 0.0f, -1.0f, 0.0f);
-            glTranslatef(posAI1x, .9f, posAI1Y);
-            glmDraw(P1, GLM_SMOOTH);
+        glPushMatrix();{
+            glTranslatef(posAI1x, 0.9, posAI1Y);
+            glRotatef(rotAI1, 0.0, -1.0, 0.0);
+            P1->draw();
         }
         glPopMatrix();
-        glPushMatrix();
-        {
-            //in position
-            glRotatef(rotAI2, 0.0f, -1.0f, 0.0f);
-            glTranslatef(posAI2x, .9f, posAI2Y);
-            glmDraw(P2, GLM_SMOOTH);
+        glPushMatrix();{
+            glTranslatef(posAI2x, 0.9, posAI2Y);
+            glRotatef(rotAI2, 0.0, -1.0, 0.0);
+            P2->draw();
         }
         glPopMatrix();
-        glPushMatrix();
-        {
-            //in position GoalKeeper
-            glTranslatef(posGK1x, .9f, posGK1y);
-            glRotatef(rotGP1, 0.0f, -1.0f, 0.0f);
-            glmDraw(P3, GLM_SMOOTH);
+        glPushMatrix();{
+            glTranslatef(posGK1x, 0.9, posGK1y);
+            glRotatef(rotGP1, 0.0, -1.0, 0.0);
+            P3->draw();
         }
         glPopMatrix();
-        
     }
     glPopMatrix();
-    
+   
     //TEAM B
     glPushMatrix();{
         glPushMatrix();
@@ -259,7 +227,7 @@ void display(void)
             //in position
             glTranslatef(positionX, .9f, positionY);
             glRotatef(rotB, 0.0f, 1.0f, 0.0f);
-            glmDraw(AI1, GLM_SMOOTH);
+            AI1->draw();
         }
         glPopMatrix();
         glPushMatrix();
@@ -267,7 +235,7 @@ void display(void)
             //in position
             glTranslatef(positionX2, .9f, positionY2);
             glRotatef(rotA, 0.0f, 1.0f, 0.0f);
-            glmDraw(AI2, GLM_SMOOTH);
+            AI2->draw();
         }
         glPopMatrix();
         glPushMatrix();
@@ -275,7 +243,7 @@ void display(void)
             //in position GoalKeeper
             glTranslatef(posGK2x, .9f, posGK2y);
             glRotatef(rotGP2, 0.0f, 1.0f, 0.0f);
-            glmDraw(AI3, GLM_SMOOTH);
+            AI3->draw();
         }
         glPopMatrix();
     }
@@ -287,7 +255,7 @@ void display(void)
         ball->inMotion(100.0, 20.0);
     }
     glPopMatrix();
-
+    
     glutSwapBuffers();
 }
 
@@ -345,6 +313,20 @@ void updateGoalKeeperAI(){
 
 }
 
+void movingBall(){
+    if(ball->inCollision(positionX, positionY, .05)){
+        moving = true;
+        ball->update(positionX+1, positionY+1);
+        
+    }else
+    if(ball->inCollision(positionX2, positionY2, .05)){
+        moving = true;
+        ball->update(positionX2+1, positionY2+1);
+        
+    }
+}
+
+
 void reinit(){
     goalA = 0;
     goalB = 0;
@@ -389,6 +371,7 @@ void idle (void)
     if(start){
         updateAI();
         updateGoalKeeperAI();
+        movingBall();
         if(timer<0){
             timer =0;
             if(goalA == goalB){
@@ -475,188 +458,6 @@ void keys(unsigned char key, int x, int y){
             
 }
 
-
-
-//No funciona para que la bola siga al jugador todo el tiempo que esta en la misma posicion
-
-
-/*void keys(unsigned char key, int x, int y){
- 
-    
-    if(positionXbola == positionX && positionYbola == positionY){
-        positionXbola = positionX;
-        positionYbola = positionY;
-        printf("Iguales");
-        if (key == 'w'){
-            positionYbola -= 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-            
-        }
-        if (key == 's'){
-            positionYbola += 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-            
-        }
-        if (key == 'a'){
-            positionXbola -= 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-            
-        }
-        if (key == 'd'){
-            
-            
-            positionXbola += 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-        }
-        if (key == 'x'){
-            printf("X");
-            printf("%.3f\n", positionXbola);
-            for (float p = 0.000; p==1.5; p=p+0.010) {
-                positionXbola=positionXbola+p;
-            }
-        }
-    }
-    if (key == 'w'){
-        positionY -= 0.100f;
-        if(positionY==-0.000f){
-            positionY=0.000f;
-        }
-        if(positionX==-0.000f){
-            positionX=0.000f;
-        }
-        printf("X jugador");
-        printf("%.3f\n", positionX);
-        printf("Y jugador");
-        printf("%.3f\n", positionY);
-        printf("X bola");
-        printf("%.3f\n", positionXbola);
-        printf("Y bola");
-        printf("%.3f\n", positionYbola);
-    }
-    if (key == 's'){
-        positionY += 0.100f;
-        if(positionY==-0.000f){
-            positionY=0.000f;
-        }
-        if(positionX==-0.000f){
-            positionX=0.000f;
-        }
-        printf("X jugador");
-        printf("%.3f\n", positionX);
-        printf("Y jugador");
-        printf("%.3f\n", positionY);
-        printf("X bola");
-        printf("%.3f\n", positionXbola);
-        printf("Y bola");
-        printf("%.3f\n", positionYbola);
-    }
-    if (key == 'a'){
-        positionX -= 0.100f;
-        if(positionY==-0.000f){
-            positionY=0.000f;
-        }
-        if(positionX==-0.000f){
-            positionX=0.000f;
-        }
-        printf("X jugador");
-        printf("%.3f\n", positionX);
-        printf("Y jugador");
-        printf("%.3f\n", positionY);
-        printf("X bola");
-        printf("%.3f\n", positionXbola);
-        printf("Y bola");
-        printf("%.3f\n", positionYbola);
-    }
-    if (key == 'd'){
-        positionX += 0.100f;
-        if(positionY==-0.000f){
-            positionY=0.000f;
-        }
-        if(positionX==-0.000f){
-            positionX=0.000f;
-        }
-        
-        printf("X jugador");
-        printf("%.3f\n", positionX);
-        printf("Y jugador");
-        printf("%.3f\n", positionY);
-        printf("X bola");
-        printf("%.3f\n", positionXbola);
-        printf("Y bola");
-        printf("%.3f\n", positionYbola);
-    }
-    if(positionXbola == positionX && positionYbola == positionY){
-        positionXbola = positionX;
-        positionYbola = positionY;
-        printf("Iguales");
-        if (key == 'w'){
-            positionYbola -= 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-        }
-        if (key == 's'){
-            positionYbola += 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-        }
-        if (key == 'a'){
-            positionXbola -= 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-        }
-        if (key == 'd'){
-            positionXbola += 0.100f;
-            if(positionY==-0.000f){
-                positionY=0.000f;
-            }
-            if(positionX==-0.000f){
-                positionX=0.000f;
-            }
-            
-        }
-        if (key == 'x'){
-            printf("X");
-            printf("%.3f\n", positionXbola);
-            for (float p = 0.000; p==1.5; p=p+0.010) {
-                positionXbola=positionXbola+p;
-            }
-        }
-    }
-    
-    
-}*/
 
 
 void reshape (int w, int h)

@@ -263,30 +263,30 @@ void updateAI(){
     float distance1 = sqrt(((positionXbola - posAI1x)* (positionXbola - posAI1x)) + ((positionYbola- posAI1Y)* (positionYbola- posAI1Y)));
     float distance2 = sqrt(((positionXbola - posAI2x)* (positionXbola - posAI2x)) + ((positionYbola- posAI2Y)* (positionYbola- posAI2Y)));
 
-        if(distance1<5.0 && distance1>0.5){
+        if(distance1<5.0 && distance1>1.0){
             if(positionXbola>posAI1x){
-                posAI1x += .0100f;
+                posAI1x += .0050f;
             }else{
-                posAI1x -= .0100f;
+                posAI1x -= .0050f;
             }
             if(positionYbola>posAI1Y){
-                posAI1Y+= .0100f;
+                posAI1Y+= .0050f;
             }else{
-                posAI1Y -= .0100f;
+                posAI1Y -= .0050f;
             }
         }
         if(distance2<5.0 && distance2>1.0){
             if(positionXbola>posAI2x){
-                posAI2x += .0100f;
+                posAI2x += .0050f;
                 
             }else{
-                posAI2x -= .0100f;
+                posAI2x -= .0050f;
             }
             
             if(positionYbola>posAI2Y){
-                posAI2Y+= .0100f;
+                posAI2Y+= .0050f;
             }else{
-                posAI2Y -= .0100f;
+                posAI2Y -= .0050f;
             }
         }
 }
@@ -315,14 +315,12 @@ void updateGoalKeeperAI(){
 
 void movingBall(){
     if(ball->inCollision(positionX, positionY, .05)){
-        moving = true;
-        ball->update(positionX+1, positionY+1);
-        
+        positionXbola = positionX;
+        positionYbola = positionY;
     }else
     if(ball->inCollision(positionX2, positionY2, .05)){
-        moving = true;
-        ball->update(positionX2+1, positionY2+1);
-        
+        positionXbola = positionX2;
+        positionYbola = positionY2;
     }
 }
 

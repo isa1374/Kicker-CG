@@ -25,14 +25,14 @@ Cube::Cube( float side, bool use_mipmaps )
         
         switch (t)
         {
-            case 0: LoadTGA(&targas[t], "/Users/issac/Documents/xcode/textures2/textures2/cube_front.tga");    break;
-            case 1: LoadTGA(&targas[t], "/Users/issac/Documents/xcode/textures2/textures2/cube_back.tga");
+            case 0: LoadTGA(&targas[t], "/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/cube_back.tga");    break;
+            case 1: LoadTGA(&targas[t], "/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/cube_back.tga");
                 break;
-            case 2: LoadTGA(&targas[t], "/Users/issac/Documents/xcode/textures2/textures2/cube_left.tga");
+            case 2: LoadTGA(&targas[t], "/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/cube_left.tga");
                 break;
-            case 3: LoadTGA(&targas[t], "/Users/issac/Documents/xcode/textures2/textures2/cube_right.tga");    break;
-            case 4: LoadTGA(&targas[t], "/Users/issac/Documents/xcode/textures2/textures2/cube_top.tga");        break;
-            case 5: LoadTGA(&targas[t], "/Users/issac/Documents/xcode/textures2/textures2/cube_bottom.tga");    break;
+            case 3: LoadTGA(&targas[t], "/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/cube_right.tga");    break;
+            case 4: LoadTGA(&targas[t], "/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/cube_top.tga");        break;
+            case 5: LoadTGA(&targas[t], "/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/cube_bottom.tga");    break;
         }
         
         if( use_mipmaps )

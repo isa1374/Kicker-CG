@@ -93,20 +93,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CB0B00E71FC68A630068B293 /* header */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = header;
-			sourceTree = "<group>";
-		};
-		CB0B00E81FC68A850068B293 /* source */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = source;
-			sourceTree = "<group>";
-		};
 		CB0B04621FC34D4800074D53 = {
 			isa = PBXGroup;
 			children = (
@@ -152,8 +138,6 @@
 				CB0B04AA1FC38C4700074D53 /* Camera.h */,
 				CB0B04AB1FC38CEF00074D53 /* vecs.h */,
 				CB0B00E91FC6B6090068B293 /* Player.h */,
-				CB0B00E81FC68A850068B293 /* source */,
-				CB0B00E71FC68A630068B293 /* header */,
 				CB947E291FC3BD94000734F8 /* assets */,
 			);
 			path = KickerFP;

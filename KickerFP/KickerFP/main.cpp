@@ -282,6 +282,12 @@ void display(void)
     glutSwapBuffers();
 }
 
+void goal(){
+    if((positionXbola>5.0  && positionXbola<4.0)&& (positionYbola>-1.0 && positionYbola<1.0)){
+        goalA += 1;
+    }
+}
+
 void updateAI(){
     float distance1 = sqrt(((positionXbola - posAI1x)* (positionXbola - posAI1x)) + ((positionYbola- posAI1Y)* (positionYbola- posAI1Y)));
     float distance2 = sqrt(((positionXbola - posAI2x)* (positionXbola - posAI2x)) + ((positionYbola- posAI2Y)* (positionYbola- posAI2Y)));
@@ -399,6 +405,7 @@ void reinit(){
 void idle (void)
 {
     if(start){
+        //goal();
         movingBall();
         updateAI();
         updateGoalKeeperAI();

@@ -22,7 +22,7 @@ public:
     void draw();
     void update(float x, float y, float rot);
     
-    GLMmodel* player= glmReadOBJ("/Users/issac/Desktop/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
+    GLMmodel* player= glmReadOBJ("/Users/karla/Documents/Isa/GC/Kicker-CG/KickerFP/KickerFP/assets/Cyborg.obj");
     float posx;
     float posy;
     float posz;

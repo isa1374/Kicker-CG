@@ -289,7 +289,7 @@ void updateAI(){
 }
 
 void updateGoalKeeperAI(){
-    float vel = -0.005;
+    float vel = 0.005;
     if((posGK1y + vel) > 1.1 || (posGK1y + vel) < -1.1){
         vel *= -1;
     }
@@ -298,7 +298,7 @@ void updateGoalKeeperAI(){
     if((posGK2y + vel) > 1.1 || (posGK2y + vel) < -1.1){
         vel *= -1;
     }
-    posGK2y += vel; 
+    posGK2y += vel;
 }
 
 void kick(){

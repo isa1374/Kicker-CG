@@ -2,7 +2,7 @@
 //  main.cpp
 //  KickerFP
 //
-//  Created by Karla on 20/11/17.
+//  Created by Karla & Issac on 20/11/17.
 //  Copyright © 2017 Isa. All rights reserved.
 //
 
@@ -18,6 +18,11 @@
 #include "Ball.h"
 #include "Field.h"
 #include "Player.h"
+#include "cCube.hpp"
+
+// se declaran dos cuadros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Cube*        cube0;
+Cube*        cube1;
 
 
 void displayText(int x, int y, char *txt);
@@ -93,6 +98,14 @@ Player*    AI3;
 
 void init(void)
 {
+    //se hacen como del tamaño de una cancha %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    cube0                = new Cube( 1.5f, true );
+    cube1                = new Cube( 1.5f, true    );
+    glEnable( GL_TEXTURE_2D );
+    glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+    glShadeModel ( GL_SMOOTH );
+
+    
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -183,7 +196,20 @@ void display(void)
     displayText(320,700, st);
     displayText(200, 750, ki);
     
-  
+    //    se agregan en la posición indicada (aun no es la indicada pero estaba haciendo pruebas %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //    glPushMatrix();
+    //    glRotatef( -90, -15.0f,  0.0f, 0.0f );
+    //    glTranslatef( 0.0f, 0.0f, -6.5f );
+    //    cube0->draw();
+    //    glPopMatrix();
+    //    glPushMatrix();
+    //    glRotatef( -90, -15.0f,  0.0f, 0.0f );
+    //    glTranslatef( 0.0f, 0.0f, -6.5f );
+    //    cube1->draw();
+    //    glPopMatrix();
+    //    glPopMatrix();
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     
     /*Model field*/
     glPushMatrix();{

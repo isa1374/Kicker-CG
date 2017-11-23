@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2251C19C1FC74C82006BD87F /* cCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2251C1981FC74C81006BD87F /* cCube.cpp */; };
+		2251C19D1FC74C82006BD87F /* cTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2251C1991FC74C81006BD87F /* cTexture.cpp */; };
 		CB0B00EC1FC6C19F0068B293 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B046E1FC34D4800074D53 /* main.cpp */; };
 		CB0B00ED1FC6C19F0068B293 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B047A1FC34F6200074D53 /* Ball.cpp */; };
 		CB0B00EE1FC6C19F0068B293 /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB0B04831FC34F6300074D53 /* Field.cpp */; };
@@ -39,6 +41,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2251C1981FC74C81006BD87F /* cCube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cCube.cpp; sourceTree = "<group>"; };
+		2251C1991FC74C81006BD87F /* cTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cTexture.cpp; sourceTree = "<group>"; };
+		2251C19A1FC74C82006BD87F /* cTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cTexture.hpp; sourceTree = "<group>"; };
+		2251C19B1FC74C82006BD87F /* cCube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cCube.hpp; sourceTree = "<group>"; };
+		2251C19E1FC74CB6006BD87F /* cube_bottom.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cube_bottom.tga; sourceTree = "<group>"; };
+		2251C19F1FC74CB6006BD87F /* cube_right.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cube_right.tga; sourceTree = "<group>"; };
+		2251C1A01FC74CB6006BD87F /* cube_top.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cube_top.tga; sourceTree = "<group>"; };
+		2251C1A11FC74CB6006BD87F /* cube_left.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cube_left.tga; sourceTree = "<group>"; };
+		2251C1A21FC74CB7006BD87F /* cube_front.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cube_front.tga; sourceTree = "<group>"; };
+		2251C1A31FC74CB7006BD87F /* cube_back.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = cube_back.tga; sourceTree = "<group>"; };
 		CB0B00E91FC6B6090068B293 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		CB0B00EA1FC6B7900068B293 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		CB0B046B1FC34D4800074D53 /* KickerFP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KickerFP; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +127,10 @@
 		CB0B046D1FC34D4800074D53 /* KickerFP */ = {
 			isa = PBXGroup;
 			children = (
+				2251C1981FC74C81006BD87F /* cCube.cpp */,
+				2251C19B1FC74C82006BD87F /* cCube.hpp */,
+				2251C1991FC74C81006BD87F /* cTexture.cpp */,
+				2251C19A1FC74C82006BD87F /* cTexture.hpp */,
 				CB0B046E1FC34D4800074D53 /* main.cpp */,
 				CB0B047A1FC34F6200074D53 /* Ball.cpp */,
 				CB0B04831FC34F6300074D53 /* Field.cpp */,
@@ -155,6 +171,12 @@
 		CB947E291FC3BD94000734F8 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				2251C1A31FC74CB7006BD87F /* cube_back.tga */,
+				2251C19E1FC74CB6006BD87F /* cube_bottom.tga */,
+				2251C1A21FC74CB7006BD87F /* cube_front.tga */,
+				2251C1A11FC74CB6006BD87F /* cube_left.tga */,
+				2251C19F1FC74CB6006BD87F /* cube_right.tga */,
+				2251C1A01FC74CB6006BD87F /* cube_top.tga */,
 				CB947E2A1FC3BD94000734F8 /* Cyborg.dae */,
 				CB947E2B1FC3BD94000734F8 /* Cyborg.mtl */,
 				CB947E2C1FC3BD94000734F8 /* Cyborg.obj */,
@@ -231,9 +253,11 @@
 				CB0B00F51FC6C19F0068B293 /* glmimg_sim.c in Sources */,
 				CB0B00F61FC6C19F0068B293 /* glmimg.c in Sources */,
 				CB0B00F71FC6C19F0068B293 /* Camera.cpp in Sources */,
+				2251C19C1FC74C82006BD87F /* cCube.cpp in Sources */,
 				CB0B00F81FC6C19F0068B293 /* glmint.h in Sources */,
 				CB0B00F91FC6C19F0068B293 /* vecs.cpp in Sources */,
 				CB0B00FA1FC6C19F0068B293 /* Player.cpp in Sources */,
+				2251C19D1FC74C82006BD87F /* cTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

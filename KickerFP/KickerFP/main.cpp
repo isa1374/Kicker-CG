@@ -289,25 +289,16 @@ void updateAI(){
 }
 
 void updateGoalKeeperAI(){
-    float distance1 = sqrt(((positionXbola - posGK1x)* (positionXbola - posGK1x)) + ((positionYbola- posGK1y)* (positionYbola- posGK1y)));
-    float distance2 = sqrt(((positionXbola - posGK2x)* (positionXbola - posGK2x)) + ((positionYbola- posGK2y)* (positionYbola- posGK2y)));
-    
-        if(distance1>1.0 && distance1<10.0){
-            if(posGK1y==1.0){
-                posGK1y -= .005f;
-            }
-            if( posGK1y==-1.0){
-                posGK1y += 0.005f;
-            }
-        }
-        if(distance2>1.0 && distance2<10.0){
-            if(posGK2y==-1.0 ){
-                 posGK2y += 0.005f;
-            }else if( posGK2y==1.0){
-                posGK2y -= .005f;
-            }
-        }
+    float vel = -0.005;
+    if((posGK1y + vel) > 1.1 || (posGK1y + vel) < -1.1){
+        vel *= -1;
+    }
+    posGK1y += vel;
 
+    if((posGK2y + vel) > 1.1 || (posGK2y + vel) < -1.1){
+        vel *= -1;
+    }
+    posGK2y += vel; 
 }
 
 void kick(){
@@ -382,9 +373,10 @@ void reinit(){
 void idle (void)
 {
     if(start){
+        movingBall();
         updateAI();
         updateGoalKeeperAI();
-        movingBall();
+       
         if(timer<0){
             timer =0;
             if(goalA == goalB){
